@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 # Convert using Libre Office
 def convert_file(input_file_path, output_dir, output_file_path):
-    call('inkscape --file %s  --export-png %s ' %
+    call('inkscape --file %s  --export-type=pdf  %s ' %
          (input_file_path, output_file_path), shell=True)
 
 
@@ -26,7 +26,7 @@ def allowed_file(filename):
 
 @app.route('/', methods=['GET', 'POST'])
 def api():
-    output_extension = 'png'
+    output_extension = 'pdf'
     file_name = 'image'
     work_dir = tempfile.TemporaryDirectory()
     input_file_path = os.path.join(work_dir.name, file_name)
@@ -59,7 +59,7 @@ def api():
         work_dir.cleanup()
         return response
  
-    return send_file(output_file_path, mimetype='image/png')
+    return send_file(output_file_path, mimetype='application/pdf')
 
 
 if __name__ == "__main__":
