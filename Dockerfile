@@ -3,12 +3,11 @@ FROM python:3-alpine
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 
-
+RUN apk add --no-cache font-noto-cjk
 RUN apk add inkscape \
         build-base \ 
         # Install fonts
         msttcorefonts-installer fontconfig && \
-        font-isas-misc && \
     update-ms-fonts && \
     fc-cache -f
 
