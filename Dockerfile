@@ -7,7 +7,7 @@ RUN apk add inkscape \
         build-base \ 
         # Install fonts
         msttcorefonts-installer fontconfig && \
-        oto-fonts-cjk && \
+        noto-fonts-cjk && \
     update-ms-fonts && \
     fc-cache -f
 
